@@ -1,0 +1,12 @@
+# Environment variables
+.env
+
+# Google Auth Tokens
+*.json
+!mcp_config.json
+client_secret_*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
