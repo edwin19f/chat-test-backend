@@ -45,7 +45,12 @@ def get_new_token():
 
     try:
         flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
-        creds = flow.run_local_server(port=0)
+        # Alternative: Manual Copy-Paste Flow (avoids strict port requirements)
+        print("\n--- Manual Auth Step ---")
+        print("1. Authorize in the browser.")
+        print("2. Copy the code provided by Google.")
+        print("3. Paste it below.")
+        creds = flow.run_console()
         
         print("\n✅ Authentication Successful!")
         print("-" * 50)
