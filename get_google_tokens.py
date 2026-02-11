@@ -3,6 +3,10 @@ import json
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Scopes required for the agent
 SCOPES = [
     'https://www.googleapis.com/auth/gmail.modify',
@@ -12,10 +16,17 @@ SCOPES = [
 def get_new_token():
     print("--- Google OAuth Token Generator ---")
     print("This script will help you generate a new Refresh Token.")
-    print("You need your Client ID and Client Secret from Google Cloud Console.\n")
+    
+    # Try to load from env first
+    client_id = os.getenv("GMAIL_CLIENT_ID") or os.getenv("CALENDAR_CLIENT_ID")
+    client_secret = os.getenv("GMAIL_CLIENT_SECRET") or os.getenv("CALENDAR_CLIENT_SECRET")
 
-    client_id = input("Enter your Client ID: ").strip()
-    client_secret = input("Enter your Client Secret: ").strip()
+    if client_id and client_secret:
+        print("Found Client ID and Secret in .env, using those.")
+    else:
+        print("You need your Client ID and Client Secret from Google Cloud Console.\n")
+        client_id = input("Enter your Client ID: ").strip()
+        client_secret = input("Enter your Client Secret: ").strip()
 
     if not client_id or not client_secret:
         print("Error: Client ID and Secret are required.")

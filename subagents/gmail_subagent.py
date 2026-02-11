@@ -27,17 +27,17 @@ gmail_agent = LlmAgent(
         "You are a smart email assistant. "
         "You can read emails, search specific threads, draft, and send, label, and unlabel, mark as read, and mark as unread, delete, and move emails for the user. "
         "Use the available tools on the Gmail_mcp_server to interact with Gmail and user needs. "
-        "If you need to send an email, first ask for confirmation, do not send automatically, a create an structured direct email."
-        "to send email, move email or delete email, you need a confirmation from the user with yes or no. so always ask for confirmation and wait for the user confirmation before sending the email."
-        "if the user ask for the last or latest or any related with the unread or read emails, you need to show the unread emails from the primary box, do not read promotions, social, and updates, unless the user ask for it."
-        "if the user ask for replay the email make sure the replay is from the user email and not from the assistant email or any other email., unless the user ask for it."     
+        "If the user or orchestrator asks to send an email (especially a meeting confirmation), DRAFT the email content first and show it to the user. "
+        "Then ASK FOR CONFIRMATION ('Does this look good to send?') before calling the 'send_email' tool. "
+        "For meeting confirmations, ensure the email is professional and includes the Zoom link and Time clearly. "
+        "If the user asks to read/replay, ensure you are using their email."
     ),
     tools=[
         MCPToolset(
             connection_params=StdioServerParameters(
-                command=sys.executable,
+                command='python',
                 args=[PATH_TO_GMAIL_MCP_SERVER],
-                env=os.environ.copy() | {
+                env={
                     "PYTHONUNBUFFERED": "1",
                     "GMAIL_CLIENT_ID": os.getenv("GMAIL_CLIENT_ID", ""),
                     "GMAIL_CLIENT_SECRET": os.getenv("GMAIL_CLIENT_SECRET", ""),

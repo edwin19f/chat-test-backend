@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 load_dotenv()
-
+#https://developers.google.com/workspace/calendar/api/v3/reference
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 # --- Calendar Service ---

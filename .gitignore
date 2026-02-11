@@ -10,3 +10,6 @@ client_secret_*.json
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Virtual Environment
+venv/
