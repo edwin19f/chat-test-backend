@@ -3,7 +3,7 @@ uvicorn
 pydantic
 python-dotenv
 google-genai
-
+python-dotenv
 google-adk
 google-auth
 google-auth-oauthlib
