@@ -8,3 +8,6 @@ google-adk
 google-auth
 google-auth-oauthlib
 requests
+google-api-python-client
+mcp
+pytz
